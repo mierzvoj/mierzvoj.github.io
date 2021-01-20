@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC"-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <title>Tytul dokumentu</title>
+      <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+      <link rel="stylesheet" href="styles.css">
+      <script src="login.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+</head>
+      <style>
+
+      </style>
+
+<body>
+	
+  <div class="header">    
+       <a href="#default" class="logo">Witaj na uczelni</a>
+          <div class="header-right">
+	              <a class="active" href="#home">Plan zajęć</a>
+                <a href="#contact">Kontakt</a>
+                <a href="index.html">Wyloguj</a> 
+   
+          </div>
+  </div>
+
+
+<main>
+	
+      <div class="flex-container">
+        
+        <div class = "left">
+
+        <p><b>Student: Wojciech  Kowalski</b></p>
+
+        <p>Kalendarz na bieżący miesiąc: <input type="text" id="calendar" /></p>
+
+        <p style="font-family:verdana"><b>Wyniki Twoich ostatnich kolokwiów</b></p>
+
+        <div id="container"></div>
+        <div><button class="student student1"  onclick="student(); this.onclick=null;">Oceny z ostatnich 3 miesięcy</button>
+                
+                <table id="myTable"><tr><th>Oceny</th><th>Przedmioty</th></tr></table>
+                <table id="myTable"></table>
+        </div>
+        
+        
+       
+
+</div>
+
+<div>
+
+        <button class="accordion">Poniedziałek</button>
+        <div class="panel" id="container1"></div>
+
+        <button class="accordion">Wtorek</button>
+        <div class="panel" id="container2"></div>
+
+        <button class="accordion">Środa</button>
+        <div class="panel" id="container3"></div>
+
+        <button class="accordion">Czwartek</button>
+        <div class="panel" id="container4"></div>
+
+        <button class="accordion">Piątek</button>
+        <div class="panel" id="container5"></div>
+
+</div>
+
+</div>
+
+
+</main>
+      <footer>
+        <div class="footcolumn">
+          <p>
+            Wyższa Szkoła Nauk Przyrodniczych
+          </p>
+      </div>
+        <div class="footcolumn">
+          <p>
+            Dziekanat: dziekanat@wsnp.pl +48 22 222 22 22
+          </p>
+        </div>
+           <div class="footcolumn">
+             <p>
+              Żwirki i Wigury 21 Warszawa 00-538
+            </p>
+        </div>
+      </footer>
+
+<script type="text/javascript">
+class TimeTable {
+      constructor(godziny, przedmiot){
+        
+        this.godziny = godziny;
+        this.przedmiot = przedmiot;
+   
+  }
+}
+  
+  let tt1 = new TimeTable("8:00-10:00", "matematyka");
+  let tt2 = new TimeTable("10:00-12:00","fizyka");
+  let tt3 = new TimeTable("12:00-14:00","chemia");
+
+  
+   var time = [];
+     
+   
+   time.push(tt1);
+   time.push(tt2);  
+   time.push(tt3);
+   time.push(tt1);
+   time.push(tt2);
+
+ var html = '<table>';
+    html += '<tr>';
+      for( var j in time[0] ) {
+        html += '<th>' + "   "+ j + '</th>';
+ }
+        html += '</tr>';
+      for( var i = 0; i < time.length; i++) {
+        
+        html += '<tr>';
+        
+      for( var j in time[i] ) {
+        
+
+        html +='<td>' + time[i][j] + '</td>';
+  }
+        html += '</tr>';
+
+ }
+
+        html += '</table>';
+
+  document.getElementById('container1').innerHTML = html;
+  document.getElementById('container2').innerHTML = html;
+  document.getElementById('container3').innerHTML = html;
+  document.getElementById('container4').innerHTML = html;
+  document.getElementById('container5').innerHTML = html;
+
+class MarksTable {
+      constructor(Przedmioty, Oceny){
+        
+        this.Przedmioty = Przedmioty;
+        this.Oceny = Oceny;
+   
+  }
+}
+  
+  let m1 = new MarksTable("Matematyka",     "5");
+  let m2 = new MarksTable("Fizyka",         "3");
+  let m3 = new MarksTable("Chemia",         "4");
+  let m4 = new MarksTable("WF",             "4");
+  let m5 = new MarksTable("Biologia",       "4");
+  let m6 = new MarksTable("Geografia",      "4");
+  let m7 = new MarksTable("Jęz. angielski", "4");
+  let m8 = new MarksTable("Jęz. niemiecki", "4");
+  
+  var marks = [];
+     
+   
+   marks.push(m1);
+   marks.push(m2);  
+   marks.push(m3);
+   marks.push(m4);
+   marks.push(m5);
+   marks.push(m6);
+   marks.push(m7);
+   marks.push(m8);   
+
+ var html = "<table>";
+    html += '<tr>';
+      for( var j in marks[0] ) {
+        html += '<th>' + "    "+ j + '</th>';
+ }
+        html += '</tr>';
+      for( var i = 0; i < marks.length; i++) {
+        
+        html += '<tr>';
+        
+      for( var j in marks[i] ) {
+        
+
+        html +='<td id="loop">' + marks[i][j] + '</td id="loop">';
+  }
+        html += '</tr>';
+
+ }
+
+        html += "</table>";
+  
+  document.getElementById('container').innerHTML = html
+    
+$( function() {
+    $( "#accordion" ).accordion();
+  });
+
+
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
+
+$(function() {
+         $( "#calendar" ).datepicker();   
+}); 
+
+
+
+ </script>
+
+</body>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+
+<link rel="stylesheet" href="style1.css">
+<script src="login.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+      <title>login_form</title>
+
+ 
+<body>
+
+<div class="initial">System Informacji Studenckiej <br>
+    Kliknij, aby się zalogować
+    <div class="center">
+      <button class="login-button"  onclick="document.getElementById('id01').style.display='block'">Logowanie</button>
+    </div>
+</div>
+<!-- the modal -->
+<div id="id01" class="modal" name="loginform">
+
+    <form class="modal-content animate" id="loginform" name="loginform" method="post" action="index1.html" >
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Użytkownik</b></label>
+      <input type="text" name="username" id="username" required>
+
+      <label for="psw"><b>Hasło</b></label>
+      <input type="password" name="password" id="password" required>
+        
+      
+      <button type="submit" name ="loginbtn" id = "loginbtn"> Zaloguj się </a>
+      </button>
+      
+
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Zapamiętaj dane logowania
+      </label>
+    </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cofnij</button>
+        <span class="psw">Zapomniałeś <a href="#">hasła?</a></span>
+      </div>
+    </form>
+ 
+</div>
+
+<script>
+
+var modal = document.getElementById('id01');
+
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+$(function() {
+    $('#loginform').submit(function(e) {
+        e.preventDefault();
+        var username = $("#username").val();
+        var password = $("#password").val();
+        if (username == "u1" && password == "p1") {
+            window.location.href = "index1.html";
+        } else {
+            alert("Niepoprawny użytkownik lub hasło");
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+
+<link rel="stylesheet" href="style1.css">
+<script src="login.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+      <title>login_form</title>
+
+ 
+<body>
+
+<div class="initial">System Informacji Studenckiej <br>
+    Kliknij, aby się zalogować
+    <div class="center">
+      <button class="login-button"  onclick="document.getElementById('id01').style.display='block'">Logowanie</button>
+    </div>
+</div>
+<!-- the modal -->
+<div id="id01" class="modal" name="loginform">
+
+<form id="loginform" name="loginform" method="post" action="index.html">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" class="txtfield" tabindex="1">
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" class="txtfield" tabindex="2">
+    <div class="center">
+        <input type="submit" name="loginbtn" id="loginbtn" class="flatbtn-blu hidemodal" value="Log In" tabindex="3">
+    </div>
+</form>
+</div>
+<script type="text/javascript">
+
+
+$(function() {
+    $('#loginform').submit(function(e) {
+        e.preventDefault();
+        var username = $("#username").val();
+        var password = $("#password").val();
+        if (username == "admin") {
+            window.location.href = "index.html";
+        } else {
+            alert("Usuario o contraseña invalido");
+        }
+    });
+});
+ </script>
+</div>
+
+
+
+</body>
+</html>
